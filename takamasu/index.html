@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Takamatsu Bespoke Journey</title>
+    <title>Takamatsu Bespoke</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
@@ -63,12 +63,33 @@
             display: flex;
         }
 
+
         .items_center {
             align-items: center;
         }
 
         .gap_1 {
             gap: 0.25rem;
+        }
+
+        .gap_2 {
+            gap: 0.5rem;
+        }
+
+        .gap_3 {
+            gap: 0.75rem;
+        }
+
+        .gap_4 {
+            gap: 1rem;
+        }
+
+        .flex_wrap {
+            flex_wrap: wrap;
+        }
+
+        .grid {
+            display: grid;
         }
 
         .grid_cols_2 {
@@ -84,6 +105,18 @@
         @media (min-width: 769px) {
             .md\:grid_cols_2 {
                 grid-template-columns: repeat(2, 1fr);
+            }
+
+            .sm\:flex_row {
+                flex-direction: row;
+            }
+
+            .sm\:items_end {
+                align-items: flex-end;
+            }
+
+            .sm\:gap_3 {
+                gap: 0.75rem;
             }
         }
 
@@ -372,6 +405,110 @@
         }
 
         /* ==========================================================================
+           Survival Japanese Section
+           ========================================================================== */
+        .survival_section {
+            background-color: var(--bg-card);
+            border-radius: 2rem;
+            padding: 2.5rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border-light);
+            margin-bottom: 3rem;
+        }
+
+        .survival_header {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        @media (min-width: 768px) {
+            .survival_header {
+                font-size: 1.5rem;
+            }
+        }
+
+        .survival_header svg {
+            color: var(--accent);
+            width: 28px;
+            height: 28px;
+        }
+
+        .survival_header-sub {
+            font-size: 0.875rem;
+            font-weight: 400;
+            color: var(--text-gold);
+        }
+
+        @media (min-width: 768px) {
+            .survival_header-sub {
+                font-size: 1rem;
+            }
+        }
+
+        .survival_card {
+            background-color: var(--bg-spot);
+            padding: 1.5rem;
+            border-radius: 1rem;
+            border: 1px solid var(--accent-light);
+        }
+
+        .survival_card-title {
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .survival_card-title svg {
+            color: var(--accent);
+        }
+
+        .phrase_item {
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .phrase_item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+            margin-bottom: 0;
+        }
+
+        .phrase_desc {
+            font-size: 0.8125rem;
+            color: var(--text-muted);
+            margin-bottom: 0.25rem;
+        }
+
+        .phrase_text_group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .phrase_jp {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .phrase_kr {
+            font-size: 0.8125rem;
+            color: var(--accent);
+            font-weight: 500;
+            letter-spacing: 0.025em;
+        }
+
+        /* ==========================================================================
            Pending List Section
            ========================================================================== */
         .pending_section {
@@ -500,6 +637,9 @@
             <symbol id="icon-bookmark" viewBox="0 0 24 24">
                 <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"></path>
             </symbol>
+            <symbol id="icon-messagecircle" viewBox="0 0 24 24">
+                <path d="m3 21 1.9-5.7a8.5 8.5 0 1 1 3.8 3.8z"></path>
+            </symbol>
         </svg>
 
         <div id="container">
@@ -553,7 +693,6 @@
                                             </svg> 인포메이션 데스크에서 여권을 제시하시면 패스 수령이 가능합니다.</p>
                                     </div>
                                 </article>
-                                <br><br><br><br><br><br><br><br><br><br>
                                 <article class="timeline_item">
                                     <div class="timeline_dot" aria-hidden="true"></div>
                                     <header class="item_header">
@@ -572,7 +711,6 @@
                                         <div class="img_placeholder" aria-hidden="true"><img src="2공항 리무진 티켓 발권기4.jpg"
                                                 alt=""></div>
                                     </div>
-                                    <br><br><br><br><br><br><br><br><br><br>
                                     <div class="images_grid grid_cols_2 md:grid_cols_2">
                                         <div class="img_placeholder" aria-hidden="true"><img
                                                 src="2공항 리무진 타는곳 2번 정류장.jpg" alt=""></div>
@@ -626,7 +764,6 @@
                                         </p>
                                     </div>
                                 </article>
-                                <br><br><br>
                                 <article class="timeline_item">
                                     <div class="timeline_dot" aria-hidden="true"></div>
                                     <header class="item_header">
@@ -734,7 +871,6 @@
                                         <div class="img_placeholder" aria-hidden="true"><img
                                                 src="3다마카쓰역 5번 승강장 마린라이너.jpg" alt=""></div>
                                     </div>
-                                    <br><br><br>
                                     <div class="images_grid grid_cols_2 md:grid_cols_2">
                                         <div class="img_placeholder" aria-hidden="true"><img src="3다마카쓰역에서 가는길.jpg"
                                                 alt="">
@@ -775,7 +911,6 @@
                                                 alt="">
                                         </div>
                                     </div>
-                                    <br><br><br><br><br><br><br><br><br><br>
                                     <div class="images_grid grid_cols_2 md:grid_cols_2">
                                         <div class="img_placeholder" aria-hidden="true"><img src="4오카야마 구라시키행 지하철.png"
                                                 alt=""></div>
@@ -1013,7 +1148,6 @@
                                             10:30, 11:00 등 30분 간격 운행)</p>
                                     </div>
                                 </article>
-                                <br><br><br>
                                 <article class="timeline_item">
                                     <div class="timeline_dot" aria-hidden="true"></div>
                                     <header class="item_header">
@@ -1092,7 +1226,6 @@
                                             </svg> 입구 상점가에서 지팡이를 무료로 대여할 수 있습니다. 족욕을 위해 작은 수건을 하나 챙겨가시는 것을 추천합니다.</p>
                                     </div>
                                 </article>
-                                <br><br><br>
                                 <article class="timeline_item">
                                     <div class="timeline_dot" aria-hidden="true"></div>
                                     <header class="item_header">
@@ -1254,7 +1387,6 @@
                                             </svg> 기쿠게츠테이에서 연못 뷰와 함께 즐기는 말차는 필수입니다.</p>
                                     </div>
                                 </article>
-                                <br><br>
                                 <article class="timeline_item">
                                     <div class="timeline_dot" aria-hidden="true"></div>
                                     <header class="item_header">
@@ -1310,6 +1442,214 @@
                             </div>
                         </section>
                     </div>
+
+                    <section class="survival_section" aria-labelledby="survival-title">
+                        <h3 id="survival-title" class="survival_header">
+                            <svg>
+                                <use href="#icon-messagecircle"></use>
+                            </svg>
+                            Survival Japanese
+                            <span class="survival_header-sub">(생존 일본어 회화)</span>
+                        </h3>
+                        <div class="grid md:grid_cols_2 gap_4">
+
+                            <div class="survival_card">
+                                <h4 class="survival_card-title">
+                                    <svg width="16" height="16">
+                                        <use href="#icon-messagecircle"></use>
+                                    </svg> 기본 회화 & 소통
+                                </h4>
+                                <div>
+                                    <div class="phrase_item">
+                                        <p class="phrase_desc">안녕하세요 / 좋은 아침이에요. (아침 인사)</p>
+                                        <div class="phrase_text_group sm:flex_row sm:items_end sm:gap_3">
+                                            <span class="phrase_jp">おはようございます</span>
+                                            <span class="phrase_kr">[오하요- 고자이마스]</span>
+                                        </div>
+                                    </div>
+                                    <div class="phrase_item">
+                                        <p class="phrase_desc">저기요 / 죄송합니다 / 실례합니다 (만능 단어)</p>
+                                        <div class="phrase_text_group sm:flex_row sm:items_end sm:gap_3">
+                                            <span class="phrase_jp">すみません</span>
+                                            <span class="phrase_kr">[스미마셍]</span>
+                                        </div>
+                                    </div>
+                                    <div class="phrase_item">
+                                        <p class="phrase_desc">감사합니다</p>
+                                        <div class="phrase_text_group sm:flex_row sm:items_end sm:gap_3">
+                                            <span class="phrase_jp">ありがとうございます</span>
+                                            <span class="phrase_kr">[아리가토- 고자이마스]</span>
+                                        </div>
+                                    </div>
+                                    <div class="phrase_item">
+                                        <p class="phrase_desc">네 / 아니요</p>
+                                        <div class="phrase_text_group sm:flex_row sm:items_end sm:gap_3">
+                                            <span class="phrase_jp">はい / いいえ</span>
+                                            <span class="phrase_kr">[하이 / 이이에]</span>
+                                        </div>
+                                    </div>
+                                    <div class="phrase_item">
+                                        <p class="phrase_desc">화장실은 어디인가요?</p>
+                                        <div class="phrase_text_group sm:flex_row sm:items_end sm:gap_3">
+                                            <span class="phrase_jp">トイレはどこですか？</span>
+                                            <span class="phrase_kr">[토이레와 도코데스카?]</span>
+                                        </div>
+                                    </div>
+                                    <div class="phrase_item">
+                                        <p class="phrase_desc">사진 좀 찍어주시겠어요?</p>
+                                        <div class="phrase_text_group sm:flex_row sm:items_end sm:gap_3">
+                                            <span class="phrase_jp">写真を撮ってもらえますか？</span>
+                                            <span class="phrase_kr">[샤신오 톳테 모라에마스카?]</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="survival_card">
+                                <h4 class="survival_card-title">
+                                    <svg width="16" height="16">
+                                        <use href="#icon-utensils"></use>
+                                    </svg> 식당 & 카페
+                                </h4>
+                                <div>
+                                    <div class="phrase_item">
+                                        <p class="phrase_desc">두 명입니다. (1명: 히토리, 3명: 산닌)</p>
+                                        <div class="phrase_text_group sm:flex_row sm:items_end sm:gap_3">
+                                            <span class="phrase_jp">ふたりです</span>
+                                            <span class="phrase_kr">[후타리데스]</span>
+                                        </div>
+                                    </div>
+                                    <div class="phrase_item">
+                                        <p class="phrase_desc">추천 메뉴는 무엇인가요?</p>
+                                        <div class="phrase_text_group sm:flex_row sm:items_end sm:gap_3">
+                                            <span class="phrase_jp">おすすめは何ですか？</span>
+                                            <span class="phrase_kr">[오스스메와 난데스카?]</span>
+                                        </div>
+                                    </div>
+                                    <div class="phrase_item">
+                                        <p class="phrase_desc">(메뉴를 가리키며) 이거 하나랑, 이거 하나 주세요.</p>
+                                        <div class="phrase_text_group sm:flex_row sm:items_end sm:gap_3">
+                                            <span class="phrase_jp">これ一つと、これ一つください</span>
+                                            <span class="phrase_kr">[코레 히토츠토, 코레 히토츠 쿠다사이]</span>
+                                        </div>
+                                    </div>
+                                    <div class="phrase_item">
+                                        <p class="phrase_desc">생맥주 하나 주세요.</p>
+                                        <div class="phrase_text_group sm:flex_row sm:items_end sm:gap_3">
+                                            <span class="phrase_jp">生ビール一つください</span>
+                                            <span class="phrase_kr">[나마비-루 히토츠 쿠다사이]</span>
+                                        </div>
+                                    </div>
+                                    <div class="phrase_item">
+                                        <p class="phrase_desc">잘 먹겠습니다.</p>
+                                        <div class="phrase_text_group sm:flex_row sm:items_end sm:gap_3">
+                                            <span class="phrase_jp">いただきます</span>
+                                            <span class="phrase_kr">[이타다키마스]</span>
+                                        </div>
+                                    </div>
+                                    <div class="phrase_item">
+                                        <p class="phrase_desc">정말 맛있어요!</p>
+                                        <div class="phrase_text_group sm:flex_row sm:items_end sm:gap_3">
+                                            <span class="phrase_jp">とても美味しいです</span>
+                                            <span class="phrase_kr">[토테모 오이시-데스]</span>
+                                        </div>
+                                    </div>
+                                    <div class="phrase_item">
+                                        <p class="phrase_desc">잘 먹었습니다.</p>
+                                        <div class="phrase_text_group sm:flex_row sm:items_end sm:gap_3">
+                                            <span class="phrase_jp">ごちそうさまでした</span>
+                                            <span class="phrase_kr">[고치소-사마데시타]</span>
+                                        </div>
+                                    </div>
+                                    <div class="phrase_item">
+                                        <p class="phrase_desc">계산해 주세요. / 영수증 주세요.</p>
+                                        <div class="phrase_text_group sm:flex_row sm:items_end sm:gap_3">
+                                            <span class="phrase_jp">お会計お願いします</span>
+                                            <span class="phrase_kr">[오카이케이 오네가이시마스]</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="survival_card">
+                                <h4 class="survival_card-title">
+                                    <svg width="16" height="16">
+                                        <use href="#icon-shoppingbag"></use>
+                                    </svg> 쇼핑 & 결제
+                                </h4>
+                                <div>
+                                    <div class="phrase_item">
+                                        <p class="phrase_desc">얼마인가요?</p>
+                                        <div class="phrase_text_group sm:flex_row sm:items_end sm:gap_3">
+                                            <span class="phrase_jp">いくらですか？</span>
+                                            <span class="phrase_kr">[이쿠라데스카?]</span>
+                                        </div>
+                                    </div>
+                                    <div class="phrase_item">
+                                        <p class="phrase_desc">신용카드 사용할 수 있나요?</p>
+                                        <div class="phrase_text_group sm:flex_row sm:items_end sm:gap_3">
+                                            <span class="phrase_jp">クレジットカードは使えますか？</span>
+                                            <span class="phrase_kr">[크레짓토 카-도와 츠카에마스카?]</span>
+                                        </div>
+                                    </div>
+                                    <div class="phrase_item">
+                                        <p class="phrase_desc">현금으로 낼게요.</p>
+                                        <div class="phrase_text_group sm:flex_row sm:items_end sm:gap_3">
+                                            <span class="phrase_jp">現金で払います</span>
+                                            <span class="phrase_kr">[겐킨데 하라이마스]</span>
+                                        </div>
+                                    </div>
+                                    <div class="phrase_item">
+                                        <p class="phrase_desc">봉투에 넣어주세요.</p>
+                                        <div class="phrase_text_group sm:flex_row sm:items_end sm:gap_3">
+                                            <span class="phrase_jp">袋に入れてください</span>
+                                            <span class="phrase_kr">[후쿠로니 이레테 쿠다사이]</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="survival_card">
+                                <h4 class="survival_card-title">
+                                    <svg width="16" height="16">
+                                        <use href="#icon-mappin"></use>
+                                    </svg> 교통 & 호텔
+                                </h4>
+                                <div>
+                                    <div class="phrase_item">
+                                        <p class="phrase_desc">여기까지 어떻게 가나요?</p>
+                                        <div class="phrase_text_group sm:flex_row sm:items_end sm:gap_3">
+                                            <span class="phrase_jp">ここまでどうやって行きますか？</span>
+                                            <span class="phrase_kr">[코코마데 도-얏테 이키마스카?]</span>
+                                        </div>
+                                    </div>
+                                    <div class="phrase_item">
+                                        <p class="phrase_desc">(택시 등) 여기서 세워주세요.</p>
+                                        <div class="phrase_text_group sm:flex_row sm:items_end sm:gap_3">
+                                            <span class="phrase_jp">ここで止めてください</span>
+                                            <span class="phrase_kr">[코코데 토메테 쿠다사이]</span>
+                                        </div>
+                                    </div>
+                                    <div class="phrase_item">
+                                        <p class="phrase_desc">체크인 부탁드립니다.</p>
+                                        <div class="phrase_text_group sm:flex_row sm:items_end sm:gap_3">
+                                            <span class="phrase_jp">チェックインお願いします</span>
+                                            <span class="phrase_kr">[쳇쿠인 오네가이시마스]</span>
+                                        </div>
+                                    </div>
+                                    <div class="phrase_item">
+                                        <p class="phrase_desc">짐을 맡겨둘 수 있을까요?</p>
+                                        <div class="phrase_text_group sm:flex_row sm:items_end sm:gap_3">
+                                            <span class="phrase_jp">荷物をあずかってもらえますか？</span>
+                                            <span class="phrase_kr">[니모츠오 아즈캇테 모라에마스카?]</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </section>
+
 
                     <section class="pending_section" aria-labelledby="pending_title">
                         <h3 id="pending_title" class="pending_header">
