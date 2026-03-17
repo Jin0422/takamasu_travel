@@ -1,0 +1,1412 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Takamatsu Bespoke Journey</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        /* ==========================================================================
+           CSS Variables & Reset
+           ========================================================================== */
+        :root {
+            --bg-main: #FBF9F6;
+            --bg-card: #FFFFFF;
+            --bg-spot: #FAF8F5;
+            --text-main: #2C3E50;
+            --text-dark: #1A2530;
+            --text-muted: #5D6D7E;
+            --text-gold: #8A7150;
+            --accent: #A68A64;
+            --accent-light: #E5D1B8;
+            --border-light: #F0EBE1;
+
+            --font-sans: 'Noto Sans KR', sans-serif;
+            --font_serif: Georgia, 'Times New Roman', serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            padding-bottom: 5rem;
+            background-color: var(--bg-main);
+            font-family: var(--font-sans);
+            font-size: 0.9375rem;
+            line-height: 1.6;
+            color: var(--text-main);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ==========================================================================
+           Typography & Utilities
+           ========================================================================== */
+        .italic {
+            font-style: italic;
+        }
+
+        .font_serif {
+            font-family: var(--font_serif);
+        }
+
+        .font_light {
+            font-weight: 300;
+        }
+
+        .flex {
+            display: flex;
+        }
+
+        .items_center {
+            align-items: center;
+        }
+
+        .gap_1 {
+            gap: 0.25rem;
+        }
+
+        .grid_cols_2 {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @media (max-width: 768px) {
+            .md\:grid_cols_2 {
+                /* grid-template-columns: 1fr; */
+            }
+        }
+
+        @media (min-width: 769px) {
+            .md\:grid_cols_2 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .container {
+            max-width: 56rem;
+            /* 896px */
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        svg {
+            width: 1em;
+            height: 1em;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            fill: none;
+        }
+
+        /* ==========================================================================
+           Header Section
+           ========================================================================== */
+        .header {
+            padding: 2rem 0 0;
+            text-align: center;
+        }
+
+        .header_eyebrow {
+            margin-bottom: 1rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--accent);
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+        }
+
+        .header_title {
+            margin-bottom: 1rem;
+            font-size: 3.5rem;
+            line-height: 1.1;
+            color: var(--text-dark);
+            letter-spacing: -0.02em;
+        }
+
+        .header_subtitle {
+            color: #8C9AA9;
+        }
+
+        @media (max-width: 768px) {
+            .header_title {
+                font-size: 3rem;
+            }
+        }
+
+        .header_meta {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            margin-bottom: 2.5rem;
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            letter-spacing: 0.1em;
+        }
+
+        .dot_divider {
+            width: 4px;
+            height: 4px;
+            background-color: var(--accent-light);
+            border-radius: 50%;
+        }
+
+        /* ==========================================================================
+           Timeline Cards (Days)
+           ========================================================================== */
+        .day_card {
+            padding: 2.5rem 3.5rem;
+            margin-bottom: 3rem;
+            border: 1px solid var(--border-light);
+            background-color: var(--bg-card);
+            border-radius: 2rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        @media (max-width: 768px) {
+            .day_card {
+                padding: 2rem;
+            }
+        }
+
+        .day_header {
+            margin-bottom: 2.5rem;
+            padding-bottom: 1.25rem;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .day_title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--accent);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        /* Timeline Items */
+        .timeline {
+            position: relative;
+        }
+
+        .timeline::before {
+            position: absolute;
+            top: 0.5rem;
+            bottom: 0.5rem;
+            left: 7px;
+            width: 1px;
+            background-color: var(--accent-light);
+            content: '';
+        }
+
+        .timeline_item {
+            position: relative;
+            padding-left: 2.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .timeline_item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline_dot {
+            position: absolute;
+            top: 0.375rem;
+            left: 0;
+            width: 15px;
+            height: 15px;
+            border: 4px solid var(--bg-card);
+            background-color: var(--accent);
+            border-radius: 50%;
+        }
+
+        .item_header {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.375rem;
+        }
+
+        .item_time {
+            font-size: 0.9375rem;
+            font-weight: 700;
+            font-family: var(--font_serif);
+            color: var(--text-dark);
+        }
+
+        .item_place {
+            font-size: 0.9375rem;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .item_desc {
+            margin-bottom: 0.75rem;
+            font-size: 0.8125rem;
+            color: var(--text-muted);
+        }
+
+        /* Spots (Restaurants/Shops) */
+        .spots_grid {
+            display: grid;
+            gap: 0.75rem;
+            margin: 0.75rem 0 1.25rem 0;
+        }
+
+        .spot_card {
+            padding: 1rem;
+            border: 1px solid var(--accent-light);
+            background-color: var(--bg-spot);
+            border-radius: 0.75rem;
+        }
+
+        .spot_name {
+            display: flex;
+            align-items: center;
+            gap: 0.375rem;
+            margin-bottom: 0.375rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .spot_icon {
+            width: 13px;
+            height: 13px;
+            color: var(--accent);
+        }
+
+        .spot_desc {
+            display: block;
+            font-size: 0.6875rem;
+            color: var(--text-muted);
+        }
+
+        /* Image Placeholders */
+        .images_grid {
+            display: grid;
+            align-items: start;
+            gap: 1rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .img_placeholder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            width: 100%;
+            min-height: 8rem;
+            border: 2px dashed var(--accent-light);
+            background-color: var(--bg-spot);
+            border-radius: 0.75rem;
+            overflow: hidden;
+            color: var(--accent);
+        }
+
+        .img_placeholder img {
+            display: block;
+            width: 100%;
+        }
+
+        @media (min-width: 768px) {
+            /* .img_placeholder {
+                height: 10rem;
+            } */
+        }
+
+
+        /* Badges & Tags */
+        .tags_container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .tag {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            padding: 0.25rem 0.75rem;
+            border: 1px solid var(--border-light);
+            background-color: var(--bg-main);
+            border-radius: 9999px;
+            font-size: 0.625rem;
+            color: var(--text-main);
+        }
+
+        .tag svg {
+            width: 12px;
+            height: 12px;
+        }
+
+        /* Tip Box */
+        .tip_box {
+            padding: 0.75rem;
+            margin-top: 0.5rem;
+            border-left: 4px solid var(--accent);
+            background-color: var(--bg-spot);
+            border-radius: 0.75rem;
+        }
+
+        .tip_text {
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--text-gold);
+        }
+
+        .tip_text svg {
+            margin-right: 0.25rem;
+            width: 13px;
+            height: 13px;
+            vertical-align: middle;
+        }
+
+        /* ==========================================================================
+           Pending List Section
+           ========================================================================== */
+        .pending_section {
+            padding: 2rem;
+            border: 2px dashed var(--accent-light);
+            background-color: var(--bg-spot);
+            border-radius: 2rem;
+        }
+
+        .pending_header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .pending_header svg {
+            width: 22px;
+            height: 22px;
+            color: var(--accent);
+        }
+
+        .pending_grid {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .pending_card {
+            padding: 1.5rem;
+            border: 1px solid var(--border-light);
+            background-color: var(--bg-card);
+            border-radius: 0.75rem;
+        }
+
+        .pending_title {
+            margin-bottom: 0.375rem;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .pending_loc {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            margin-bottom: 0.75rem;
+            font-size: 0.625rem;
+            font-weight: 700;
+            color: var(--accent);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .pending_loc svg {
+            width: 12px;
+            height: 12px;
+        }
+
+        .pending_desc {
+            margin-bottom: 1rem;
+            font-size: 0.8125rem;
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="wrap">
+
+        <svg style="display: none;" xmlns="http://www.w3.org/2000/svg">
+            <symbol id="icon-calendar" viewBox="0 0 24 24">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+            </symbol>
+            <symbol id="icon-mappin" viewBox="0 0 24 24">
+                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+            </symbol>
+            <symbol id="icon-navigation" viewBox="0 0 24 24">
+                <polygon points="3 11 22 2 13 21 11 13 3 11"></polygon>
+            </symbol>
+            <symbol id="icon-receipt" viewBox="0 0 24 24">
+                <path d="M4 2v20l2-1 2 1 2-1 2 1 2-1 2 1 2-1 2 1V2l-2 1-2-1-2 1-2-1-2 1-2-1-2 1Z"></path>
+                <path d="M16 14H8"></path>
+                <path d="M16 10H8"></path>
+            </symbol>
+            <symbol id="icon-info" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M12 16v-4"></path>
+                <path d="M12 8h.01"></path>
+            </symbol>
+            <symbol id="icon-shoppingbag" viewBox="0 0 24 24">
+                <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path>
+                <path d="M3 6h18"></path>
+                <path d="M16 10a4 4 0 0 1-8 0"></path>
+            </symbol>
+            <symbol id="icon-coffee" viewBox="0 0 24 24">
+                <path d="M17 8h1a4 4 0 1 1 0 8h-1"></path>
+                <path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"></path>
+                <line x1="6" y1="2" x2="6" y2="4"></line>
+                <line x1="10" y1="2" x2="10" y2="4"></line>
+                <line x1="14" y1="2" x2="14" y2="4"></line>
+            </symbol>
+            <symbol id="icon-moon" viewBox="0 0 24 24">
+                <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+            </symbol>
+            <symbol id="icon-map" viewBox="0 0 24 24">
+                <polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"></polygon>
+                <line x1="9" y1="3" x2="9" y2="18"></line>
+                <line x1="15" y1="6" x2="15" y2="21"></line>
+            </symbol>
+            <symbol id="icon-utensils" viewBox="0 0 24 24">
+                <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"></path>
+                <path d="M7 2v20"></path>
+                <path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"></path>
+            </symbol>
+            <symbol id="icon-camera" viewBox="0 0 24 24">
+                <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z">
+                </path>
+                <circle cx="12" cy="13" r="3"></circle>
+            </symbol>
+            <symbol id="icon-bookmark" viewBox="0 0 24 24">
+                <path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16z"></path>
+            </symbol>
+        </svg>
+
+        <div id="container">
+            <main id="content">
+
+                <header id="header" class="header container">
+                    <p class="header_eyebrow">Bespoke Travel Architecture</p>
+                    <h1 class="header_title font_serif">
+                        Takamatsu <br>
+                    </h1>
+                    <div class="header_meta">
+                        <span class="flex items_center gap_1"><svg>
+                                <use href="#icon-calendar"></use>
+                            </svg> 04.25 - 04.28</span>
+                        <span class="dot_divider"></span>
+                        <span class="flex items_center gap_1"><svg>
+                                <use href="#icon-mappin"></use>
+                            </svg> 2 Guests</span>
+                    </div>
+                </header>
+                <!-- //header -->
+
+                <div class="container">
+                    <div style="margin-bottom: 4rem;">
+
+                        <section class="day_card" aria-labelledby="day-1-title">
+                            <div class="day_header">
+                                <h2 id="day-1-title" class="day_title font_serif">DAY 01</h2>
+                            </div>
+                            <div class="timeline">
+
+                                <article class="timeline_item">
+                                    <div class="timeline_dot" aria-hidden="true"></div>
+                                    <header class="item_header">
+                                        <time class="item_time">16:15</time>
+                                        <h3 class="item_place">다카마쓰 공항 도착</h3>
+                                    </header>
+                                    <p class="item_desc">수하물 수령 후 1층 입국장 인포메이션 데스크에서 우동 패스를 수령하고 ATM기에서 여행용 현금을 인출합니다.
+                                    </p>
+                                    <div class="images_grid grid_cols_2 md:grid_cols_2">
+                                        <div class="img_placeholder" aria-hidden="true">
+                                            <img src="1공항 atm.jpg" alt="">
+                                        </div>
+                                        <div class="img_placeholder" aria-hidden="true">
+                                            <img src="1공항 인포메이션.jpg" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="tip_box">
+                                        <p class="tip_text"><svg>
+                                                <use href="#icon-info"></use>
+                                            </svg> 인포메이션 데스크에서 여권을 제시하시면 패스 수령이 가능합니다.</p>
+                                    </div>
+                                </article>
+                                <br><br><br><br><br><br><br><br><br><br>
+                                <article class="timeline_item">
+                                    <div class="timeline_dot" aria-hidden="true"></div>
+                                    <header class="item_header">
+                                        <time class="item_time">17:00 ~ 17:40</time>
+                                        <h3 class="item_place">리무진 버스 탑승 → 나카진초 하차</h3>
+                                    </header>
+                                    <p class="item_desc">2번 승강장에서 '가와라마치행' 버스 탑승. '나카진초(中新町)' 하차 후 호텔까지 도보 2분입니다.</p>
+                                    <div class="images_grid grid_cols_2 md:grid_cols_2">
+                                        <div class="img_placeholder" aria-hidden="true"><img src="2공항 리무진 티켓 발권기.jpg"
+                                                alt=""></div>
+                                        <div class="img_placeholder" aria-hidden="true"><img src="2공항 리무진 티켓 발권기2.jpg"
+                                                alt=""></div>
+
+                                        <div class="img_placeholder" aria-hidden="true"><img src="2공항 리무진 티켓 발권기3.jpg"
+                                                alt=""></div>
+                                        <div class="img_placeholder" aria-hidden="true"><img src="2공항 리무진 티켓 발권기4.jpg"
+                                                alt=""></div>
+                                    </div>
+                                    <br><br><br><br><br><br><br><br><br><br>
+                                    <div class="images_grid grid_cols_2 md:grid_cols_2">
+                                        <div class="img_placeholder" aria-hidden="true"><img
+                                                src="2공항 리무진 타는곳 2번 정류장.jpg" alt=""></div>
+                                        <div class="img_placeholder" aria-hidden="true"><img src="버스 시간표.png" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="tags_container">
+                                        <span class="tag"><svg>
+                                                <use href="#icon-receipt"></use>
+                                            </svg> 900엔</span>
+                                    </div>
+                                    <div class="tip_box">
+                                        <p class="tip_text"><svg>
+                                                <use href="#icon-info"></use>
+                                            </svg> 1,000엔 지폐만 결제 가능합니다. 하차 후 우측 횡단보도를 건너면 컴포트 호텔이 보입니다.</p>
+                                    </div>
+                                </article>
+
+                                <article class="timeline_item">
+                                    <div class="timeline_dot" aria-hidden="true"></div>
+                                    <header class="item_header">
+                                        <time class="item_time">18:30</time>
+                                        <h3 class="item_place">저녁 식사: 혼카쿠테우치 모리야 (심볼타워점)</h3>
+                                    </header>
+                                    <p class="item_desc">쫀득하고 탄력 있는 굵은 수타면과 얼굴만한 크기의 바삭한 카키아게(야채튀김)가 유명한 현지인 찐 맛집입니다.
+                                        심볼타워 1층에
+                                        있어 식사 후 바로 전망대로 올라가기 완벽한 동선입니다.</p>
+                                    <div class="images_grid grid_cols_2 md:grid_cols_2">
+                                        <div class="img_placeholder" aria-hidden="true"><img src="식당 - 혼카쿠테우치 모리야.png"
+                                                alt=""></div>
+                                        <div class="img_placeholder" aria-hidden="true">
+                                            <img src="숙소에서 혼카쿠테우치모리야.png" alt="">
+
+                                        </div>
+                                    </div>
+                                    <div class="tags_container">
+                                        <span class="tag"><svg>
+                                                <use href="#icon-navigation"></use>
+                                            </svg> 호텔 앞 '나카진초' 정류장에서 다카마쓰역행 버스 탑승 (약 10~15분 소요 / 200엔)
+                                            <a href="https://maps.app.goo.gl/xeBZLuhDFwniuU9d7" target="_blank">구글
+                                                경로</a>
+                                        </span>
+                                        <span class="tag"><svg>
+                                                <use href="#icon-receipt"></use>
+                                            </svg> 약 800~1,200엔</span>
+                                    </div>
+                                    <div class="tip_box">
+                                        <p class="tip_text"><svg>
+                                                <use href="#icon-info"></use>
+                                            </svg> 다카마쓰역 앞 심볼타워에 분점이 있습니다! 카키아게(야채튀김)는 양이 상당하니 꼭 맛보시길 추천합니다.
+                                        </p>
+                                    </div>
+                                </article>
+                                <br><br><br>
+                                <article class="timeline_item">
+                                    <div class="timeline_dot" aria-hidden="true"></div>
+                                    <header class="item_header">
+                                        <time class="item_time">20:30</time>
+                                        <h3 class="item_place">다카마쓰 심볼타워 야경</h3>
+                                    </header>
+                                    <p class="item_desc">같은 건물 전망층으로 이동해 세토내해와 시내 야경을 21:00까지 관람합니다.</p>
+                                    <div class="images_grid grid_cols_2 md:grid_cols_2">
+                                        <div class="img_placeholder" aria-hidden="true"><img src="다카마쓰 심볼타워.png" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="tip_box">
+                                        <p class="tip_text"><svg>
+                                                <use href="#icon-info"></use>
+                                            </svg> 전망층은 22:30에 종료되므로 저녁 식사 후 여유롭게 방문하기 좋습니다.</p>
+                                    </div>
+                                </article>
+
+                                <article class="timeline_item">
+                                    <div class="timeline_dot" aria-hidden="true"></div>
+                                    <header class="item_header">
+                                        <time class="item_time">21:00 ~ 11:00</time>
+                                        <h3 class="item_place">돈키호테 쇼핑 및 숙소 복귀</h3>
+                                    </header>
+                                    <p class="item_desc">상점가를 따라 도보로 복귀하며 필요한 기념품과 간식을 쇼핑합니다.</p>
+                                    <div class="images_grid grid_cols_2 md:grid_cols_2">
+                                        <div class="img_placeholder" aria-hidden="true"><img src="심볼타워에서 돈키호테.png"
+                                                alt="">
+                                        </div>
+                                        <div class="img_placeholder" aria-hidden="true"><img src="돈키호테에서 숙소.png" alt="">
+                                        </div>
+
+                                    </div>
+                                    <div class="tip_box">
+                                        <p class="tip_text"><svg>
+                                                <use href="#icon-info"></use>
+                                            </svg> 5,500엔 이상 면세를 위해 여권은 필수입니다.
+                                            <a href="https://maps.app.goo.gl/MgPVB42PZqdfhpFG8" target="_blank">구글
+                                                경로1</a>
+                                            /
+                                            <a href="https://maps.app.goo.gl/GM1t7Dx5urmkgFgY6" target="_blank">구글
+                                                경로2</a>
+
+
+                                        </p>
+                                    </div>
+                                </article>
+
+
+                            </div>
+                        </section>
+
+                        <section class="day_card" aria-labelledby="day-2-title">
+                            <div class="day_header">
+                                <h2 id="day-2-title" class="day_title font_serif">DAY 02</h2>
+                            </div>
+                            <div class="timeline">
+
+                                <article class="timeline_item">
+                                    <div class="timeline_dot" aria-hidden="true"></div>
+                                    <header class="item_header">
+                                        <time class="item_time">08:30 ~ 09:00</time>
+                                        <h3 class="item_place">조식</h3>
+                                    </header>
+                                    <p class="item_desc">호텔 조식을 이용하거나 인근에서 가볍게 아침 식사를 하며 하루를 시작합니다.</p>
+                                </article>
+
+                                <article class="timeline_item">
+                                    <div class="timeline_dot" aria-hidden="true"></div>
+                                    <header class="item_header">
+                                        <time class="item_time">09:00 ~ 10:00</time>
+                                        <h3 class="item_place">관광 준비 및 다카마쓰역 이동</h3>
+                                    </header>
+                                    <p class="item_desc">외출 준비를 마치고 열차 탑승을 위해 다카마쓰역으로 여유롭게 이동합니다.</p>
+                                    <div class="images_grid grid_cols_2 md:grid_cols_2">
+                                        <div class="img_placeholder" aria-hidden="true"><img src="3다마카쓰역.jpg" alt="">
+                                        </div>
+                                        <div class="img_placeholder" aria-hidden="true"><img src="숙소에서 다카마쓰역.png"
+                                                alt="">
+                                        </div>
+                                    </div>
+                                    <div class="tip_box">
+                                        <p class="tip_text">
+                                            <svg>
+                                                <use href="#icon-info"></use>
+                                            </svg>
+                                            버스 15분 / 도보 25분
+                                            <a href="https://maps.app.goo.gl/CvsTBvMtbbYK5a93A" target="_blank">구글
+                                                경로</a>
+                                        </p>
+                                    </div>
+                                </article>
+
+
+                                <article class="timeline_item">
+                                    <div class="timeline_dot" aria-hidden="true"></div>
+                                    <header class="item_header">
+                                        <time class="item_time">10:30 ~ 11:23</time>
+                                        <h3 class="item_place">다카마쓰 역 출발 → 오카야마 역 도착</h3>
+                                    </header>
+                                    <p class="item_desc">오카야마행 마린 라이너 탑승. 승차권은 구라시키까지 한 번에 발권합니다. (약 53분 소요)</p>
+                                    <div class="images_grid grid_cols_2 md:grid_cols_2">
+                                        <div class="img_placeholder" aria-hidden="true"><img src="3다마카쓰역.jpg" alt="">
+                                        </div>
+                                        <div class="img_placeholder" aria-hidden="true"><img
+                                                src="3다마카쓰역 5번 승강장 마린라이너.jpg" alt=""></div>
+                                    </div>
+                                    <br><br><br>
+                                    <div class="images_grid grid_cols_2 md:grid_cols_2">
+                                        <div class="img_placeholder" aria-hidden="true"><img src="3다마카쓰역에서 가는길.jpg"
+                                                alt="">
+                                        </div>
+                                        <div class="img_placeholder" aria-hidden="true"><img
+                                                src="3다카마쓰 오카야마 마린라이너 시간표.jpg" alt=""></div>
+
+                                    </div>
+                                    <div class="tags_container">
+                                        <span class="tag"><svg>
+                                                <use href="#icon-navigation"></use>
+                                            </svg> 쾌속 마린 라이너</span>
+                                        <span class="tag"><svg>
+                                                <use href="#icon-receipt"></use>
+                                            </svg> 1,510엔</span>
+                                    </div>
+                                    <div class="tip_box">
+                                        <p class="tip_text"><svg>
+                                                <use href="#icon-info"></use>
+                                            </svg> 진행 방향 왼쪽 좌석이 세토대교 바다 뷰 명당입니다.</p>
+                                    </div>
+                                </article>
+
+                                <article class="timeline_item">
+                                    <div class="timeline_dot" aria-hidden="true"></div>
+                                    <header class="item_header">
+                                        <time class="item_time">11:35 ~ 11:52</time>
+                                        <h3 class="item_place">오카야마 역 환승 → 구라시키 역 도착</h3>
+                                    </header>
+                                    <p class="item_desc">11:23 오카야마역 하차 후, 약 10분 정도 여유롭게 1·2번 승강장으로 이동합니다. 11:35 전후로
+                                        출발하는 산요
+                                        본선(또는 하쿠비선) 열차에 탑승하면 구라시키역에 약 11:50경 도착합니다.</p>
+                                    <div class="images_grid grid_cols_2 md:grid_cols_2">
+                                        <div class="img_placeholder" aria-hidden="true"><img src="4오카야마역 중앙출구.jfif"
+                                                alt="">
+                                        </div>
+                                        <div class="img_placeholder" aria-hidden="true"><img src="4오카야마에서 구라시키행.png"
+                                                alt="">
+                                        </div>
+                                    </div>
+                                    <br><br><br><br><br><br><br><br><br><br>
+                                    <div class="images_grid grid_cols_2 md:grid_cols_2">
+                                        <div class="img_placeholder" aria-hidden="true"><img src="4오카야마 구라시키행 지하철.png"
+                                                alt=""></div>
+                                        <div class="img_placeholder" aria-hidden="true"><img src="4구라시키역에서 미관지구로.png"
+                                                alt=""></div>
+                                    </div>
+                                    <div class="tags_container">
+                                        <span class="tag"><svg>
+                                                <use href="#icon-navigation"></use>
+                                            </svg> JR 산요 본선 (약 15~17분 소요)</span>
+                                    </div>
+                                    <div class="tip_box">
+                                        <p class="tip_text"><svg>
+                                                <use href="#icon-info"></use>
+                                            </svg> 전광판에서 Kurashiki 방면을 확인 후 가장 빠른 열차를 타시면 됩니다.</p>
+                                    </div>
+                                </article>
+
+                                <article class="timeline_item">
+                                    <div class="timeline_dot" aria-hidden="true"></div>
+                                    <header class="item_header">
+                                        <time class="item_time">12:00 ~ 16:15</time>
+                                        <h3 class="item_place">구라시키 미관지구 관광 및 자율 점심</h3>
+                                    </header>
+                                    <p class="item_desc">전통 수로와 흰 벽 창고 마을을 산책합니다. 점심 식사와 디저트는 취향에 맞춰 아래의 구라시키 명물 맛집 중 한
+                                        곳을 골라
+                                        자유롭게 즐겨보세요.</p>
+                                    <div class="images_grid grid_cols_2 md:grid_cols_2">
+                                        <div class="img_placeholder" aria-hidden="true"><img src="구로사키역.png" alt="">
+                                        </div>
+                                        <div class="img_placeholder" aria-hidden="true"><img src="구로사키미관지구.png" alt="">
+                                        </div>
+                                    </div>
+
+                                    <div class="spots_grid md:grid_cols_2">
+                                        <div class="spot_card">
+                                            <h4 class="spot_name"><svg class="spot_icon">
+                                                    <use href="#icon-utensils"></use>
+                                                </svg> 미소카츠 우메노키</h4>
+                                            <span class="spot_desc">달콤짭짤한 특제 된장 소스가 듬뿍 올라간 미소카츠(된장 돈가스) 정식을 파는 오랜 전통의
+                                                맛집. (약
+                                                1,100엔)</span>
+                                        </div>
+                                        <div class="spot_card">
+                                            <h4 class="spot_name"><svg class="spot_icon">
+                                                    <use href="#icon-utensils"></use>
+                                                </svg> 붓카케 우동 후루이치</h4>
+                                            <span class="spot_desc">단짠 국물에 비벼 먹는 '붓카케 우동'의 발상지. 쫄깃한 냉(冷) 붓카케를 강력 추천. (약
+                                                600~800엔)</span>
+                                        </div>
+                                        <div class="spot_card">
+                                            <h4 class="spot_name"><svg class="spot_icon">
+                                                    <use href="#icon-utensils"></use>
+                                                </svg> 쿠라시키 라멘 마스야</h4>
+                                            <span class="spot_desc">구라시키 특산 간장과 해산물 베이스의 진한 국물, 부드러운 챠슈가 특징인 로컬 라멘. (약
+                                                800~1,000엔)</span>
+                                        </div>
+                                        <div class="spot_card">
+                                            <h4 class="spot_name"><svg class="spot_icon">
+                                                    <use href="#icon-coffee"></use>
+                                                </svg> 유린안 (有鄰庵)</h4>
+                                            <span class="spot_desc">하루 80그릇 한정 '명품 간장 계란밥'과 표정이 모두 다른 스마일 모양의 '행복 푸딩'.
+                                                (푸딩
+                                                500엔)</span>
+                                        </div>
+                                    </div>
+                                    <div class="tip_box">
+                                        <p class="tip_text"><svg>
+                                                <use href="#icon-info"></use>
+                                            </svg> 나룻배 체험은 도착 즉시 매표소에서 예약하세요.</p>
+                                    </div>
+                                </article>
+
+                                <article class="timeline_item">
+                                    <div class="timeline_dot" aria-hidden="true"></div>
+                                    <header class="item_header">
+                                        <time class="item_time">16:15 ~ 16:30</time>
+                                        <h3 class="item_place">미관지구 → 구라시키역 이동</h3>
+                                    </header>
+                                    <p class="item_desc">관광을 마치고 구라시키역으로 도보(약 15분) 이동하여 16:30경 역에 도착합니다.</p>
+                                </article>
+                                <article class="timeline_item">
+                                    <div class="timeline_dot" aria-hidden="true"></div>
+                                    <header class="item_header">
+                                        <time class="item_time">16:35 ~ 16:52</time>
+                                        <h3 class="item_place">구라시키 출발 → 오카야마 도착</h3>
+                                    </header>
+                                    <p class="item_desc">16:30경 역에 도착하여 수시로 있는 오카야마행 JR 산요 본선에 탑승합니다. 오카야마역까지는 약 15~17분
+                                        소요됩니다.</p>
+                                </article>
+
+                                <article class="timeline_item">
+                                    <div class="timeline_dot" aria-hidden="true"></div>
+                                    <header class="item_header">
+                                        <time class="item_time">16:52 ~ 19:38</time>
+                                        <h3 class="item_place">오카야마 레이오버 및 다카마쓰 귀환</h3>
+                                    </header>
+                                    <p class="item_desc">오카야마역에 도착하여 약 2시간 40분 동안 여유가 생깁니다! 역 근처의 현지 찐 맛집, 달콤한 명물 디저트,
+                                        거대한 복합 쇼핑
+                                        타운 중 취향에 맞춰 시간을 보낸 뒤, 18:42 마린 라이너를 타고 다카마쓰역(19:38 도착)으로 복귀합니다.</p>
+
+                                    <div class="spots_grid md:grid_cols_2">
+                                        <div class="spot_card">
+                                            <h4 class="spot_name"><svg class="spot_icon">
+                                                    <use href="#icon-utensils"></use>
+                                                </svg>아지츠카사 노무라</h4>
+                                            <span class="spot_desc">오카야마 명물 '데미카츠동(데미글라스 돈가스 덮밥)'을 탄생시킨 전설적인 노포 맛집입니다.
+                                                (역에서 도보 7분)</span>
+                                        </div>
+                                        <div class="spot_card">
+                                            <h4 class="spot_name"><svg class="spot_icon">
+                                                    <use href="#icon-utensils"></use>
+                                                </svg> 아즈마즈시</h4>
+                                            <span class="spot_desc">역 안(산스테 2층)에 위치해 동선이 가장 완벽합니다. 오카야마 향토 해산물 덮밥인
+                                                '바라즈시'가 유명합니다.</span>
+                                        </div>
+                                        <div class="spot_card">
+                                            <h4 class="spot_name"><svg class="spot_icon">
+                                                    <use href="#icon-utensils"></use>
+                                                </svg> 쇼도시마 라멘 HISHIO</h4>
+                                            <span class="spot_desc">특산 간장을 베이스로 한 진한 국물과 감칠맛 폭발하는 차슈가 일품인 현지인 라멘 맛집입니다.
+                                                (역 동문 도보 3분)</span>
+                                        </div>
+                                        <div class="spot_card">
+                                            <h4 class="spot_name"><svg class="spot_icon">
+                                                    <use href="#icon-utensils"></use>
+                                                </svg>명물: 제철 과일 파르페 </h4>
+                                            <span class="spot_desc">'과일의 왕국' 오카야마 필수 디저트. 역내 카페 등에서 당 충전하기 제격입니다.</span>
+                                        </div>
+                                        <div class="spot_card">
+                                            <h4 class="spot_name"><svg class="spot_icon">
+                                                    <use href="#icon-utensils"></use>
+                                                </svg> 명물: 키비단고 (수수경단)</h4>
+                                            <span class="spot_desc">모모타로 전설의 고향 오카야마 명물. 쫄깃하고 달콤해 가벼운 간식이나 선물용으로
+                                                좋습니다.</span>
+                                        </div>
+                                        <div class="spot_card">
+                                            <h4 class="spot_name"><svg class="spot_icon">
+                                                    <use href="#icon-shoppingbag"></use>
+                                                </svg> 이온몰 오카야마</h4>
+                                            <span class="spot_desc">역 지하도로 도보 5분. 서일본 최대 규모의 쇼핑몰로 1층 마트와 쾌적한 6~7층 식당가가
+                                                있습니다.</span>
+                                        </div>
+                                        <div class="spot_card">
+                                            <h4 class="spot_name"><svg class="spot_icon">
+                                                    <use href="#icon-shoppingbag"></use>
+                                                </svg> 산스테 오카야마</h4>
+                                            <span class="spot_desc">역 안에 위치한 거대한 상점가(에키나카). 2층 식품관에서 갓 구운 꼬치구이나 도시락 등
+                                                구경거리가 많습니다.</span>
+                                        </div>
+                                        <div class="spot_card">
+                                            <h4 class="spot_name"><svg class="spot_icon">
+                                                    <use href="#icon-shoppingbag"></use>
+                                                </svg> 오카야마 이치방가이</h4>
+                                            <span class="spot_desc">역 지하 1층. 세련된 패션 브랜드와 아기자기한 카페, 소품샵들이 모여 있는 지하
+                                                상점가입니다.</span>
+                                        </div>
+                                    </div>
+                                    <div class="tip_box">
+                                        <p class="tip_text"><svg>
+                                                <use href="#icon-info"></use>
+                                            </svg> 다카마쓰까지 발권한 승차권은 오카야마역에서 잠시 밖으로 나가는 '도중 하차'가 가능합니다. 유인 개찰구에서 역무원에게 표를
+                                            보여주고 밖으로
+                                            나가 편하게 식사나 쇼핑을 즐기고 오시면 됩니다!</p>
+                                    </div>
+                                </article>
+
+                                <article class="timeline_item">
+                                    <div class="timeline_dot" aria-hidden="true"></div>
+                                    <header class="item_header">
+                                        <time class="item_time">20:00 ~</time>
+                                        <h3 class="item_place">숙소 복귀 및 야식/휴식</h3>
+                                    </header>
+                                    <p class="item_desc">오카야마에서 저녁을 먹고 다카마쓰로 복귀 후, 현지 상황과 컨디션에 맞춰 가벼운 야식을 먹거나 호텔에서 휴식을
+                                        취하는 등 자유롭게 일정을 결정합니다.</p>
+                                </article>
+
+
+                            </div>
+                        </section>
+
+                        <section class="day_card" aria-labelledby="day-3-title">
+                            <div class="day_header">
+                                <h2 id="day-3-title" class="day_title font_serif">DAY 03</h2>
+                            </div>
+                            <div class="timeline">
+
+                                <article class="timeline_item">
+                                    <div class="timeline_dot" aria-hidden="true"></div>
+                                    <header class="item_header">
+                                        <time class="item_time">08:30 ~ 09:00</time>
+                                        <h3 class="item_place">조식</h3>
+                                    </header>
+                                    <p class="item_desc">호텔 조식을 이용하거나 인근에서 가볍게 아침 식사를 하며 하루를 시작합니다.</p>
+                                </article>
+
+                                <article class="timeline_item">
+                                    <div class="timeline_dot" aria-hidden="true"></div>
+                                    <header class="item_header">
+                                        <time class="item_time">09:00 ~ 09:50</time>
+                                        <h3 class="item_place">관광 준비 및 가와라마치 역 이동</h3>
+                                    </header>
+                                    <p class="item_desc">외출 준비를 마치고 고토덴 탑승을 위해 도보로 가까운 가와라마치 역으로 여유롭게 이동합니다.</p>
+                                    <div class="images_grid grid_cols_2 md:grid_cols_2">
+                                        <div class="img_placeholder" aria-hidden="true"><img src="5가와라마치역.png" alt="">
+                                        </div>
+                                        <div class="img_placeholder" aria-hidden="true"><img src="5가와라마치역 티켓.png"
+                                                alt="">
+                                        </div>
+                                    </div>
+                                </article>
+
+                                <article class="timeline_item">
+                                    <div class="timeline_dot" aria-hidden="true"></div>
+                                    <header class="item_header">
+                                        <time class="item_time">10:00 ~ 11:02</time>
+                                        <h3 class="item_place">가와라마치 역 → 고토히라 이동</h3>
+                                    </header>
+                                    <p class="item_desc">고토덴 노란색 열차 탑승. 약 1시간 동안 로컬 감성을 즐깁니다.</p>
+                                    <div class="images_grid grid_cols_2 md:grid_cols_2">
+                                        <div class="img_placeholder" aria-hidden="true"><img src="5가와라마치역 고토히라가는법.png"
+                                                alt=""></div>
+                                        <div class="img_placeholder" aria-hidden="true"><img src="5가와라마치역 고토히라가는플랫폼.png"
+                                                alt=""></div>
+                                    </div>
+                                    <div class="tags_container">
+                                        <span class="tag"><svg>
+                                                <use href="#icon-receipt"></use>
+                                            </svg> 630엔</span>
+                                    </div>
+                                    <div class="tip_box">
+                                        <p class="tip_text"><svg>
+                                                <use href="#icon-info"></use>
+                                            </svg> 3번 승강장 '고토히라 방면' 표지판을 꼭 확인하세요. (오전 출발 시간표: 09:00, 09:30, 10:00,
+                                            10:30, 11:00 등 30분 간격 운행)</p>
+                                    </div>
+                                </article>
+                                <br><br><br>
+                                <article class="timeline_item">
+                                    <div class="timeline_dot" aria-hidden="true"></div>
+                                    <header class="item_header">
+                                        <time class="item_time">11:15 ~ 14:30</time>
+                                        <h3 class="item_place">고토히라궁 관광 및 참배로 투어</h3>
+                                    </header>
+                                    <p class="item_desc">785계단을 오르며 사누키 평야를 조망합니다. 등반 전후로 참배로(산도) 양옆에 늘어선 식당, 상점, 그리고 휴식
+                                        스팟에서
+                                        고토히라의 명물을 완벽하게 즐겨보세요.</p>
+                                    <div class="images_grid grid_cols_2 md:grid_cols_2">
+                                        <div class="img_placeholder" aria-hidden="true"><img src="6고토히라역.png" alt="">
+                                        </div>
+                                        <div class="img_placeholder" aria-hidden="true"><img src="7고토히라궁 지도.png" alt="">
+                                        </div>
+                                    </div>
+
+                                    <div class="spots_grid md:grid_cols_2">
+                                        <div class="spot_card">
+                                            <h4 class="spot_name"><svg class="spot_icon">
+                                                    <use href="#icon-utensils"></use>
+                                                </svg> 곤피라 우동 산도점</h4>
+                                            <span class="spot_desc">문화재로 지정된 옛 여관 건물에서 즐기는 쫄깃한 수타 우동.</span>
+                                        </div>
+                                        <div class="spot_card">
+                                            <h4 class="spot_name"><svg class="spot_icon">
+                                                    <use href="#icon-utensils"></use>
+                                                </svg> ハニー雷蔵 (허니 라이조)</h4>
+                                            <span class="spot_desc">다채롭고 정갈한 일정식과 덮밥류를 즐길 수 있는 고토히라 로컬 맛집. 등반 전후 든든한 점심
+                                                식사로 제격입니다.</span>
+                                        </div>
+                                        <div class="spot_card">
+                                            <h4 class="spot_name"><svg class="spot_icon">
+                                                    <use href="#icon-utensils"></use>
+                                                </svg> 카미츠바키 (神椿) - 500단째 맛집</h4>
+                                            <span class="spot_desc">시세이도 팔러가 운영하는 숲속 레스토랑. 500계단을 오르다 서양식 런치나 명물 파르페를
+                                                먹으며 쉬어가기 완벽합니다.</span>
+                                        </div>
+                                        <div class="spot_card">
+                                            <h4 class="spot_name"><svg class="spot_icon">
+                                                    <use href="#icon-utensils"></use>
+                                                </svg> 히라오카 정육점 고로케</h4>
+                                            <span class="spot_desc">현지인들도 줄 서서 먹는 바삭하고 육즙 가득한 갓 튀긴 고로케와 멘치카츠
+                                                맛집입니다.</span>
+                                        </div>
+                                        <div class="spot_card">
+                                            <h4 class="spot_name"><svg class="spot_icon">
+                                                    <use href="#icon-coffee"></use>
+                                                </svg> 카마타마 소프트 아이스크림</h4>
+                                            <span class="spot_desc">우동 면발 모양 아이스크림에 파와 간장을 뿌려 먹는 고토히라만의 단짠단짠 이색
+                                                디저트입니다.</span>
+                                        </div>
+                                        <div class="spot_card">
+                                            <h4 class="spot_name"><svg class="spot_icon">
+                                                    <use href="#icon-coffee"></use>
+                                                </svg> Ike Syouten (이케 상점)</h4>
+                                            <span class="spot_desc">참배로에 위치한 세련된 상점. 감각적인 로컬 기념품과 예쁜 소품들을 구경하고 쇼핑하기
+                                                좋습니다.</span>
+                                        </div>
+                                        <div class="spot_card">
+                                            <h4 class="spot_name"><svg class="spot_icon">
+                                                    <use href="#icon-map"></use>
+                                                </svg> 킨료 사케 뮤지엄 (양조장)</h4>
+                                            <span class="spot_desc">에도 시대부터 이어진 유서 깊은 사케 양조장. 무료 견학 및 시음이 가능합니다.</span>
+                                        </div>
+                                        <div class="spot_card">
+                                            <h4 class="spot_name"><svg class="spot_icon">
+                                                    <use href="#icon-moon"></use>
+                                                </svg> 시키시마칸 족욕 (무료)</h4>
+                                            <span class="spot_desc">참배로 초입에 위치한 온천 료칸의 무료 족욕탕입니다. 등반 후 피로를 풀기에
+                                                완벽합니다.</span>
+                                        </div>
+                                    </div>
+                                    <div class="tip_box">
+                                        <p class="tip_text"><svg>
+                                                <use href="#icon-info"></use>
+                                            </svg> 입구 상점가에서 지팡이를 무료로 대여할 수 있습니다. 족욕을 위해 작은 수건을 하나 챙겨가시는 것을 추천합니다.</p>
+                                    </div>
+                                </article>
+                                <br><br><br>
+                                <article class="timeline_item">
+                                    <div class="timeline_dot" aria-hidden="true"></div>
+                                    <header class="item_header">
+                                        <time class="item_time">14:43 ~ 15:50
+                                        </time>
+                                        <h3 class="item_place">다카마쓰칫코 역 귀환</h3>
+                                    </header>
+                                    <p class="item_desc">종점까지 한 번에 이동하여 항구 근처로 복귀합니다.</p>
+                                    <div class="tags_container">
+                                        <span class="tag"><svg>
+                                                <use href="#icon-receipt"></use>
+                                            </svg> 640엔</span>
+                                    </div>
+                                    <div class="tip_box">
+                                        <p class="tip_text"><svg>
+                                                <use href="#icon-info"></use>
+                                            </svg> 출발 10분 전 역에 도착하여 미리 앉아서 가는 것을 추천합니다.</p>
+                                    </div>
+                                </article>
+
+                                <article class="timeline_item">
+                                    <div class="timeline_dot" aria-hidden="true"></div>
+                                    <header class="item_header">
+                                        <time class="item_time">16:00 ~ 17:00</time>
+                                        <h3 class="item_place">다카마쓰 성터 (타마모 공원)</h3>
+                                    </header>
+                                    <p class="item_desc">일본 3대 수성 중 하나를 산책합니다.</p>
+                                    <div class="images_grid grid_cols_2 md:grid_cols_2">
+                                        <div class="img_placeholder" aria-hidden="true"><img src="8다카마쓰칫코역.png" alt="">
+                                        </div>
+                                        <div class="img_placeholder" aria-hidden="true"><img src="8다카마스성터 지도.png"
+                                                alt="">
+                                        </div>
+                                    </div>
+                                    <div class="tip_box">
+                                        <p class="tip_text"><svg>
+                                                <use href="#icon-info"></use>
+                                            </svg> 해자 속 참돔에게 먹이 주기 체험(100엔)이 백미입니다. (참고: 4월~5월은 18:00까지 운영합니다)</p>
+                                    </div>
+                                </article>
+                                <article class="timeline_item">
+                                    <div class="timeline_dot" aria-hidden="true"></div>
+                                    <header class="item_header">
+                                        <time class="item_time">17:30</time>
+                                        <h3 class="item_place">저녁 식사: 성터 주변 맛집 및 감성 거리</h3>
+                                    </header>
+                                    <p class="item_desc">성터 관람을 마친 후 근처에서 저녁 식사를 합니다. 다카마쓰역 근처의 훌륭한 현지 우동 맛집이나 바다가 보이는
+                                        감성 레스토랑 중 취향에 맞춰 골라보세요.</p>
+
+                                    <div class="spots_grid md:grid_cols_2">
+                                        <div class="spot_card">
+                                            <h4 class="spot_name"><svg class="spot_icon">
+                                                    <use href="#icon-utensils"></use>
+                                                </svg> 기타하마 알리 (Kitahama Alley)</h4>
+                                            <span class="spot_desc">성터에서 도보 7분. 바닷가 옛 물류 창고를 개조한 레스토랑과 이자카야가 모여있는 빈티지하고
+                                                감성적인 항구 거리입니다.</span>
+                                        </div>
+                                        <div class="spot_card">
+                                            <h4 class="spot_name"><svg class="spot_icon">
+                                                    <use href="#icon-utensils"></use>
+                                                </svg> 메리켄야 다카마쓰역 앞점</h4>
+                                            <span class="spot_desc">다카마쓰역 바로 앞에 위치해 접근성이 뛰어나며, 쫄깃하고 가성비 좋은 사누키 우동을 즐길 수
+                                                있습니다.</span>
+                                        </div>
+                                        <div class="spot_card">
+                                            <h4 class="spot_name"><svg class="spot_icon">
+                                                    <use href="#icon-utensils"></use>
+                                                </svg> 가마아게 우동 오카지마 다카마츠점</h4>
+                                            <span class="spot_desc">갓 삶아낸 뜨거운 면을 진한 츠유에 찍어 먹는 '가마아게 우동'이 일품인
+                                                전문점입니다.</span>
+                                        </div>
+                                        <div class="spot_card">
+                                            <h4 class="spot_name"><svg class="spot_icon">
+                                                    <use href="#icon-utensils"></use>
+                                                </svg> 테우치잇폰마사야</h4>
+                                            <span class="spot_desc">현지인들에게 사랑받는 정통 수타 우동 맛집으로, 탄력 있는 면발과 바삭한 튀김이
+                                                훌륭합니다.</span>
+                                        </div>
+                                    </div>
+                                </article>
+
+                                <article class="timeline_item">
+                                    <div class="timeline_dot" aria-hidden="true"></div>
+                                    <header class="item_header">
+                                        <time class="item_time">19:00 ~ 20:30</time>
+                                        <h3 class="item_place">상점가 산책 및 숙소 휴식</h3>
+                                    </header>
+                                    <p class="item_desc">든든하게 식사를 마친 후 마루가메마치 아케이드를 걸어 숙소로 복귀하여 휴식을 취합니다.</p>
+
+                                </article>
+                                <article class="timeline_item" style="margin-top:-20px">
+                                    <div class="timeline_dot" aria-hidden="true"></div>
+                                    <header class="item_header">
+                                        <time class="item_time">20:30 ~</time>
+                                        <h3 class="item_place">이자카야 및 야식 (선택)</h3>
+                                    </header>
+                                    <p class="item_desc">컨디션에 따라 가와라마치 뒷골목 로컬 술집에서 마지막 밤을 즐깁니다.</p>
+                                </article>
+                            </div>
+                        </section>
+
+                        <section class="day_card" aria-labelledby="day-4-title">
+                            <div class="day_header">
+                                <h2 id="day-4-title" class="day_title font_serif">DAY 04</h2>
+                            </div>
+                            <div class="timeline">
+
+                                <article class="timeline_item">
+                                    <div class="timeline_dot" aria-hidden="true"></div>
+                                    <header class="item_header">
+                                        <time class="item_time">08:30 ~ 09:00</time>
+                                        <h3 class="item_place">조식</h3>
+                                    </header>
+                                    <p class="item_desc">호텔 조식을 이용하거나 인근 상점가에서 가볍게 아침 식사를 하며 하루를 시작합니다.</p>
+
+                                </article>
+
+                                <article class="timeline_item">
+                                    <div class="timeline_dot" aria-hidden="true"></div>
+                                    <header class="item_header">
+                                        <time class="item_time">09:00 ~ 10:00</time>
+                                        <h3 class="item_place">관광 준비 및 리츠린 공원 이동</h3>
+                                    </header>
+                                    <p class="item_desc">외출 준비와 체크아웃을 마치고, 짐을 호텔에 보관한 뒤 리츠린 공원으로 여유롭게 이동합니다.</p>
+                                    <div class="images_grid grid_cols_2 md:grid_cols_2">
+                                        <div class="img_placeholder" aria-hidden="true"><img src="숙소에서 리쓰린곤원.png"
+                                                alt="">
+                                        </div>
+                                    </div>
+                                    <div class="tip_box">
+                                        <p class="tip_text"><svg>
+                                                <use href="#icon-info"></use>
+                                            </svg> <a href="https://maps.app.goo.gl/1B7bJBcaTi1u1xj46"
+                                                target="_blank">구글경로</a></p>
+                                    </div>
+                                </article>
+
+
+
+                                <article class="timeline_item">
+                                    <div class="timeline_dot" aria-hidden="true"></div>
+                                    <header class="item_header">
+                                        <time class="item_time">10:00 ~ 12:00</time>
+                                        <h3 class="item_place">리츠린 공원 산책</h3>
+                                    </header>
+                                    <p class="item_desc">미슐랭 3스타 정원의 가장 평화로운 아침을 만끽합니다.</p>
+                                    <div class="images_grid grid_cols_2 md:grid_cols_2">
+                                        <div class="img_placeholder" aria-hidden="true"><img src="9리쓰린공원 지도.jpg" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="tags_container">
+                                        <span class="tag"><svg>
+                                                <use href="#icon-receipt"></use>
+                                            </svg> 입장료 410엔</span>
+                                    </div>
+                                    <div class="tip_box">
+                                        <p class="tip_text"><svg>
+                                                <use href="#icon-info"></use>
+                                            </svg> 기쿠게츠테이에서 연못 뷰와 함께 즐기는 말차는 필수입니다.</p>
+                                    </div>
+                                </article>
+                                <br><br>
+                                <article class="timeline_item">
+                                    <div class="timeline_dot" aria-hidden="true"></div>
+                                    <header class="item_header">
+                                        <time class="item_time">12:00 ~ 13:00</time>
+                                        <h3 class="item_place">점심: 사누키 우동 우에하라야 본점</h3>
+                                    </header>
+                                    <p class="item_desc">리츠린 공원 바로 맞은편에 위치한 셀프 우동 명가입니다. 쫄깃한 면발을 직접 데워 먹는 정통 사누키 우동을 맛볼
+                                        수 있습니다.
+                                    </p>
+                                    <div class="images_grid grid_cols_2 md:grid_cols_2">
+                                        <div class="img_placeholder" aria-hidden="true"><img src="사누키우에하라야본점.png"
+                                                alt="">
+                                        </div>
+                                        <div class="img_placeholder" aria-hidden="true"><img src="리쓰린 사누끼.png" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="tags_container">
+                                        <span class="tag"><svg>
+                                                <use href="#icon-navigation"></use>
+                                            </svg> 도보 이동 (리츠린 공원 출구에서 도보 3분)</span>
+                                        <span class="tag"><svg>
+                                                <use href="#icon-receipt"></use>
+                                            </svg> 약 500~800엔</span>
+                                    </div>
+                                    <div class="tip_box">
+                                        <p class="tip_text"><svg>
+                                                <use href="#icon-info"></use>
+                                            </svg> 현지인 맛집으로 점심엔 줄이 길지만 회전율이 매우 빠릅니다. 우동면을 직접 데우는 체험이 재밌으며, 가라아게와 야채 튀김을
+                                            곁들이는 것을 추천합니다.</p>
+                                    </div>
+                                </article>
+
+                                <article class="timeline_item">
+                                    <div class="timeline_dot" aria-hidden="true"></div>
+                                    <header class="item_header">
+                                        <time class="item_time">14:47</time>
+                                        <h3 class="item_place">나카진초 리무진 탑승</h3>
+                                    </header>
+                                    <p class="item_desc">공항으로 향하는 최적의 리무진 버스에 탑승합니다.</p>
+                                    <div class="images_grid grid_cols_2 md:grid_cols_2">
+                                        <div class="img_placeholder" aria-hidden="true"><img src="리무진 내린 후 호텔까지.jpg"
+                                                alt="">
+                                        </div>
+                                        <div class="img_placeholder" aria-hidden="true"><img src="공항가는 나가진초.png" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="tip_box">
+                                        <p class="tip_text"><svg>
+                                                <use href="#icon-info"></use>
+                                            </svg> 17:15 출국을 위해 이 시간대 버스를 가장 추천합니다.</p>
+                                    </div>
+                                </article>
+                            </div>
+                        </section>
+                    </div>
+
+                    <section class="pending_section" aria-labelledby="pending_title">
+                        <h3 id="pending_title" class="pending_header">
+                            <svg>
+                                <use href="#icon-bookmark"></use>
+                            </svg> Pending List (보류 일정)
+                        </h3>
+                        <div class="pending_grid md:grid_cols_2">
+
+                            <div class="pending_card">
+                                <h4 class="pending_title">우동 혼진 야마다야 (본점)</h4>
+                                <div class="pending_loc"><svg>
+                                        <use href="#icon-mappin"></use>
+                                    </svg> 다카마쓰 외곽 (야쿠리 역 인근)</div>
+                                <p class="pending_desc">국가 등록 유형문화재로 지정된 고풍스러운 저택에서 즐기는 프리미엄 우동 가이세키입니다. 아름다운 일본식 정원을 보며
+                                    식사할 수
+                                    있습니다.</p>
+                                <div class="tags_container">
+                                    <span class="tag"><svg>
+                                            <use href="#icon-receipt"></use>
+                                        </svg> 약 1,000~5,000엔</span>
+                                </div>
+                                <div class="tip_box">
+                                    <p class="tip_text"><svg>
+                                            <use href="#icon-info"></use>
+                                        </svg> 밤의 정원 조명이 매우 아름답습니다. 창가 별실 예약을 강력히 권장합니다.</p>
+                                </div>
+                            </div>
+
+                            <div class="pending_card">
+                                <h4 class="pending_title">우동 바카이치다이</h4>
+                                <div class="pending_loc"><svg>
+                                        <use href="#icon-mappin"></use>
+                                    </svg> 다카마쓰 시내 (가와라마치 역 도보 10분)</div>
+                                <p class="pending_desc">다카마쓰 우동의 자부심이자 '가마버터 우동'의 원조로 불리는 미식의 정점입니다. 까르보나라를 연상시키는 고소한 맛이
+                                    특징입니다.
+                                </p>
+                                <div class="tags_container">
+                                    <span class="tag"><svg>
+                                            <use href="#icon-receipt"></use>
+                                        </svg> 약 700엔</span>
+                                </div>
+                                <div class="tip_box">
+                                    <p class="tip_text"><svg>
+                                            <use href="#icon-info"></use>
+                                        </svg> 현지인과 관광객 모두에게 인기라 점심시간에는 웨이팅이 깁니다. 아침 일찍 방문하는 것도 좋은 방법입니다.</p>
+                                </div>
+                            </div>
+
+                            <div class="pending_card">
+                                <h4 class="pending_title">치쿠세이 (竹清)</h4>
+                                <div class="pending_loc"><svg>
+                                        <use href="#icon-mappin"></use>
+                                    </svg> 다카마쓰 시내 (리츠린코엔키타구치 역 도보 10분)</div>
+                                <p class="pending_desc">갓 튀겨낸 치쿠와(어묵) 튀김과 반숙 계란 튀김이 예술인 현지인 찐 맛집입니다. 우동보다 튀김이 주인공이라는 평을
+                                    받기도 합니다.
+                                </p>
+                                <div class="tags_container">
+                                    <span class="tag"><svg>
+                                            <use href="#icon-receipt"></use>
+                                        </svg> 약 400~700엔</span>
+                                </div>
+                                <div class="tip_box">
+                                    <p class="tip_text"><svg>
+                                            <use href="#icon-info"></use>
+                                        </svg> 점심시간(11:00~14:30)에만 짧게 영업하며 웨이팅이 필수입니다. 튀김은 주문 즉시 튀겨줍니다.</p>
+                                </div>
+                            </div>
+
+                            <div class="pending_card">
+                                <h4 class="pending_title">테우치우동 츠루마루</h4>
+                                <div class="pending_loc"><svg>
+                                        <use href="#icon-mappin"></use>
+                                    </svg> 다카마쓰 시내 (가와라마치 역 도보 5분)</div>
+                                <p class="pending_desc">수타 카레 우동으로 유명한 심야 식당입니다. 달콤매콤하고 진한 카레 국물과 쫄깃한 면발의 조화가 훌륭합니다.</p>
+                                <div class="tags_container">
+                                    <span class="tag"><svg>
+                                            <use href="#icon-receipt"></use>
+                                        </svg> 약 800~1,100엔</span>
+                                </div>
+                                <div class="tip_box">
+                                    <p class="tip_text"><svg>
+                                            <use href="#icon-info"></use>
+                                        </svg> 저녁 8시부터 새벽까지 영업합니다. 늦은 밤 이자카야에서 술을 마신 후 해장 우동 코스로 완벽합니다.</p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </section>
+                </div>
+            </main>
+            <!-- //content -->
+        </div>
+        <!-- //container -->
+
+    </div>
+    <!-- //wrap -->
+</body>
+
+</html>
